@@ -5,12 +5,13 @@ import java.util.Properties
 import java.util.concurrent.Executors
 
 import akka.actor.ActorSystem
-import com.typesafe.akka.http.benchmark.entity.{Fortune, World}
+import com.typesafe.akka.http.benchmark.entity.{ Fortune, World }
 import com.typesafe.config.Config
-import org.apache.commons.dbcp2.{DriverManagerConnectionFactory, PoolableConnection, PoolableConnectionFactory, PoolingDataSource}
+import org.apache.commons.dbcp2.{ DriverManagerConnectionFactory, PoolableConnection, PoolableConnectionFactory, PoolingDataSource }
 import org.apache.commons.pool2.impl.GenericObjectPool
 
-import scala.concurrent.{ExecutionContext, Future, Promise}
+import scala.concurrent.{ ExecutionContext, Future, Promise }
+import scala.language.reflectiveCalls
 
 class MySqlDataStore(components: {
   val system: ActorSystem
@@ -61,6 +62,7 @@ class MySqlDataStore(components: {
         val world = rs.next() match {
           case true =>
             World(rs.getInt("id"), rs.getInt("randomNumber"))
+          case _ => throw new RuntimeException("can not find data")
         }
         rs.close()
         stmt.close()

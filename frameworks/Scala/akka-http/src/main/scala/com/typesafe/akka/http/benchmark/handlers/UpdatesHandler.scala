@@ -3,16 +3,18 @@ package com.typesafe.akka.http.benchmark.handlers
 import akka.actor.ActorSystem
 import akka.http.scaladsl.model.HttpCharsets._
 import akka.http.scaladsl.model.MediaTypes._
-import akka.http.scaladsl.model.{HttpEntity, HttpResponse, StatusCodes}
+import akka.http.scaladsl.model.{ HttpEntity, HttpResponse, StatusCodes }
 import akka.http.scaladsl.server.Directives._
 import com.typesafe.akka.http.benchmark.datastore.DataStore
 import com.typesafe.akka.http.benchmark.entity.World
 import com.typesafe.akka.http.benchmark.util.RandomGenerator
-import spray.json.{DefaultJsonProtocol, RootJsonFormat}
+import spray.json.{ DefaultJsonProtocol, RootJsonFormat }
 
 import scala.concurrent.Future
 import scala.util.control.Exception._
-import scala.util.{Failure, Success}
+import scala.util.{ Failure, Success }
+
+import scala.language.reflectiveCalls
 
 class UpdatesHandler(components: {
   val dataStore: DataStore
@@ -27,10 +29,11 @@ class UpdatesHandler(components: {
 
   def endpoint = get {
     path("updates") {
-      parameter('queries.?) { queries => onComplete(response(queries)) {
-        case Success(worlds) => complete(worlds)
-        case Failure(t) => failWith(t)
-      }
+      parameter('queries.?) { queries =>
+        onComplete(response(queries)) {
+          case Success(worlds) => complete(worlds)
+          case Failure(t)      => failWith(t)
+        }
       }
     }
   }

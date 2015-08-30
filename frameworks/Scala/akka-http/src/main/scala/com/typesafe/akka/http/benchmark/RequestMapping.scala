@@ -4,6 +4,7 @@ import akka.http.scaladsl.model.headers.Connection
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.typesafe.akka.http.benchmark.handlers._
+import scala.language.reflectiveCalls
 
 class RequestMapping(components: {
   val plaintextHandler: PlaintextHandler
@@ -22,7 +23,7 @@ class RequestMapping(components: {
 
   def asRoute: Route = {
     respondWithHeader(Connection("Keep-Alive")) {
-       plaintext ~ json ~ db ~ queries ~ fortunes ~ updates
+      plaintext ~ json ~ db ~ queries ~ fortunes ~ updates
     }
   }
 }

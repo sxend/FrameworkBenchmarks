@@ -2,10 +2,10 @@ package com.typesafe.akka.http.benchmark
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.server.Route
-import com.typesafe.akka.http.benchmark.datastore.{DataStore, MySqlDataStore}
+import com.typesafe.akka.http.benchmark.datastore.{ DataStore, MySqlDataStore }
 import com.typesafe.akka.http.benchmark.handlers._
 import com.typesafe.akka.http.benchmark.util.RandomGenerator
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.{ Config, ConfigFactory }
 import org.fusesource.scalate.TemplateEngine
 
 import scala.concurrent.ExecutionContext

@@ -2,10 +2,12 @@ package com.typesafe.akka.http.benchmark
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.server.{Route, RoutingLog, RoutingSettings, RoutingSetup}
+import akka.http.scaladsl.server.{ Route, RoutingLog, RoutingSettings, RoutingSetup }
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Sink._
 import com.typesafe.config.Config
+
+import scala.language.reflectiveCalls
 
 trait Bootstrap {
   def run(): Unit

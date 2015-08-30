@@ -4,8 +4,7 @@ import akka.http.scaladsl.model.HttpCharsets._
 import akka.http.scaladsl.model.MediaTypes._
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
-import spray.json.{DefaultJsonProtocol, RootJsonFormat}
-
+import spray.json.{ DefaultJsonProtocol, RootJsonFormat }
 
 class JsonHandler(components: {
 

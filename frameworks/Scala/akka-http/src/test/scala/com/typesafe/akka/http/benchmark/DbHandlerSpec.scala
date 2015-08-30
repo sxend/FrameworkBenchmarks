@@ -2,7 +2,7 @@ package com.typesafe.akka.http.benchmark
 
 import akka.http.scaladsl.server.RequestContext
 import com.typesafe.akka.http.benchmark.datastore.DataStore
-import com.typesafe.akka.http.benchmark.entity.{Fortune, World}
+import com.typesafe.akka.http.benchmark.entity.{ Fortune, World }
 import com.typesafe.akka.http.benchmark.util.RandomGenerator
 import org.scalatest._
 
