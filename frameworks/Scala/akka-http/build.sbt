@@ -18,6 +18,8 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 )
 
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
+
 assemblyJarName in assembly := "akka-http-benchmark.jar"
 
 mainClass in assembly := Some("com.typesafe.akka.http.benchmark.Main")
